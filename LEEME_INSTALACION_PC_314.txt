@@ -1,0 +1,60 @@
+DONA ELINA - KIT DE INSTALACION PARA PC WINDOWS
+Version del kit: Python 3.14.7
+Base funcional: POS v97 + correcciones V5/V6/V8
+
+OBJETIVO
+Este kit convierte el POS existente en un programa de escritorio para Windows usando PyInstaller.
+
+DECISION DE DISTRIBUCION
+- La compilacion se hace una vez en una PC Windows con Python 3.14.x.
+- Las otras PC reciben el paquete ENTREGA_PC y solo ejecutan INSTALAR_POS_DONA_ELINA.bat.
+- El instalador crea automaticamente el acceso directo del Escritorio.
+- No es necesario instalar Python en cada computadora donde se use el POS.
+
+ARCHIVOS PRINCIPALES
+- app.py: entrada del POS.
+- ui/: interfaz grafica.
+- db/: acceso a datos y consultas existentes.
+- assets/: logo e icono.
+- config.ini: configuracion externa de SQL Server; se conserva.
+- build_windows_314.bat: compila para Windows con Python 3.14.
+- POS_DONA_ELINA_PC_314.spec: configuracion PyInstaller.
+- INSTALAR_POS_DONA_ELINA.bat: crea la instalacion y el acceso directo.
+- DESINSTALAR_POS_DONA_ELINA.bat: elimina la instalacion del usuario actual.
+
+NO MODIFICACIONES DE BASE DE DATOS
+Este kit no contiene scripts para cambiar la estructura de SQL Server. Solo conserva la conexion que ya usa el POS.
+
+NOTA V3: config.ini se copia explicitamente a dist y ENTREGA_PC para garantizar que cada instalacion tenga su configuracion externa.
+
+
+CORRECCIÓN V4
+- config.ini se mantiene externo, junto a POS_Dona_Elina.exe.
+- El ejecutable busca config.ini junto al EXE y no dentro de _internal.
+- No se modifica la estructura ni los datos de SQL Server.
+CORRECCIÓN V5: se restauraron los botones "Cancelar" y "Guardar cliente" en la ventana Nuevo cliente.
+
+CORRECCIÓN V6 - PEDIDOS POR ENTREGAR
+- Se reemplazó el botón único "Imprimir" por "Imprimir Reparto" e "Imprimir Detalle".
+- "Imprimir Reparto" mantiene la impresión general de los pedidos de reparto visibles.
+- "Imprimir Detalle" exige seleccionar un pedido y genera solamente el detalle del pedido seleccionado.
+- La impresión de detalle consulta únicamente información de lectura y no modifica la base de datos.
+
+
+CORRECCIÓN V7/V8 - ESTADO DE CUENTA
+- Se incorporó "Estado de cuenta" como pantalla independiente accesible desde Cobros.
+- Se agregó el acceso rápido lateral "Estado de cuenta" dentro de Cobros.
+- La pantalla permite seleccionar cliente, período, consultar resumen, ver movimientos,
+  imprimir el estado de cuenta y abrir el detalle de una venta seleccionada.
+- Al abrirla desde un cliente seleccionado, el cliente queda preseleccionado.
+- Las consultas son de lectura; no se modifica la estructura ni los datos de SQL Server.
+
+
+V10 - CAMBIOS VERIFICADOS
+- Estado de cuenta: se puede escribir de forma continua en Cliente sin perder el foco.
+- Los resultados se filtran por nombre.
+- Enter selecciona el primer resultado filtrado.
+- Ventas, Cobros y Saldo se mantienen visibles al cargar los movimientos.
+- Ventas y Cobros se calculan para el período seleccionado usando las vistas existentes.
+- Saldo se obtiene de la vista de cuenta corriente.
+- No se modifica la estructura de SQL Server.

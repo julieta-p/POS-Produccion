@@ -1,0 +1,23 @@
+V9: agrega búsqueda escribiendo el nombre en Estado de cuenta > Cliente.\n\nDONA ELINA - DISTRIBUCION DEL PROGRAMA PARA WINDOWS
+
+COMO FUNCIONA
+1. El archivo build_windows_314.bat se ejecuta SOLO en la PC donde se va a construir la version de Windows.
+2. Esa PC debe tener Python 3.14.x instalado. En el caso de este kit, se preparo para Python 3.14.7.
+3. El proceso crea dist\\POS_Dona_Elina y luego arma la carpeta ENTREGA_PC.
+4. Para cada otra computadora de la empresa se copia la carpeta ENTREGA_PC y se ejecuta:
+   INSTALAR_POS_DONA_ELINA.bat
+5. El instalador copia el programa al perfil del usuario y crea automaticamente el acceso directo "POS Doña Elina" en el Escritorio.
+6. Las otras computadoras NO necesitan tener Python instalado.
+
+IMPORTANTE
+- El programa usa el archivo config.ini externo para conectarse al SQL Server existente.
+- El instalador NO modifica tablas, estructura ni datos del SQL Server.
+- Si una PC ya tiene un config.ini configurado, el instalador lo conserva y no lo sobrescribe.
+- Cada PC que vaya a conectarse al servidor debe tener instalado el Microsoft ODBC Driver 18 for SQL Server.
+- PyInstaller genera la aplicacion de Windows desde Windows; este kit no intenta fabricar un EXE de Windows desde Linux.
+
+MANTENIMIENTO
+Para publicar una nueva version del POS, se reconstruye el programa con build_windows_314.bat y se vuelve a distribuir la nueva carpeta ENTREGA_PC.
+CORRECCIÓN V6: se restauraron los botones "Cancelar" y "Guardar cliente" en la ventana Nuevo cliente.
+
+V8: Incluye pantalla independiente "Estado de cuenta" dentro de Cobros.
